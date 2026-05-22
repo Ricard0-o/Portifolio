@@ -1,0 +1,145 @@
+/* =========================
+   SOBRE PAGE (ISOLADO)
+   ========================= */
+
+.sobre-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6vh 4vw;
+}
+
+.sobre-card {
+  width: 100%;
+  max-width: 900px;
+  background: var(--cor-card);
+  border-radius: 2rem;
+  padding: 3rem 2.5rem;
+  border: 1.5px solid var(--cor-neon);
+  box-shadow:
+    0 0 32px var(--cor-neon-glow),
+    0 8px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* efeito glow decorativo */
+.sobre-card::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, var(--cor-neon-glow), transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.sobre-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sobre-card h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--cor-neon);
+  text-shadow: 0 0 10px var(--cor-neon-glow);
+}
+
+.sobre-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  color: var(--cor-texto);
+  opacity: 0.9;
+}
+
+/* =========================
+   TECNOLOGIAS
+   ========================= */
+
+.tecnologias-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.tec-card {
+  padding: 0.6rem 1.2rem;
+  border-radius: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--cor-neon);
+  color: var(--cor-neon);
+  background: transparent;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+/* hover sofisticado */
+.tec-card:hover {
+  background: var(--cor-neon);
+  color: #101214;
+  box-shadow: 0 0 16px var(--cor-neon-glow);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* =========================
+   FRASE FINAL
+   ========================= */
+
+.sobre-frase {
+  text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cor-outline);
+  opacity: 0.85;
+}
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 768px) {
+  .sobre-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .sobre-card h1 {
+    font-size: 2rem;
+  }
+
+  .sobre-card p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sobre-section {
+    padding: 4vh 3vw;
+  }
+
+  .sobre-card {
+    padding: 1.5rem 1rem;
+    border-radius: 1.5rem;
+  }
+
+  .sobre-card h1 {
+    font-size: 1.7rem;
+  }
+
+  .tecnologias-cards {
+    gap: 0.6rem;
+  }
+
+  .tec-card {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}

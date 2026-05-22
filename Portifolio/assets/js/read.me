@@ -1,0 +1,46 @@
+Relatório de Integração: Formulário de Contato e n8n
+Objetivo do Código
+O script automatiza a captura de mensagens de um formulário de contato no front-end, valida as informações inseridas pelo usuário, aplica microinterações visuais nos botões da página e transmite os dados tratados em tempo real para um fluxo de automação no n8n.
+
+Componentes e Fluxo de Funcionamento
+Experiência Visual (UI/UX)
+
+Comportamento dos Botões: Aplica um efeito de clique dinâmico em qualquer elemento com a classe .btn. Ao clicar, o botão reduz levemente de tamanho, retornando ao normal ao ser solto.
+
+Feedback de Carregamento: Durante o envio, o botão de envio é desabilitado e seu texto é alterado para "Enviando...", evitando múltiplos disparos acidentais pelo usuário.
+
+Validação e Tratamento de Dados
+O script utiliza a API nativa do navegador para verificar se todos os campos obrigatórios estão preenchidos antes de iniciar o envio.
+
+Os espaços em branco desnecessários no início e fim dos textos digitados são removidos automaticamente (.trim()).
+
+Integração assíncrona (API Fetch)
+Os dados são estruturados em um objeto JSON (Payload) e enviados via requisição HTTP POST para o endereço configurado.
+Estrutura do Payload enviado:
+nome: Nome do Usuário
+email: email@dominio.com
+mensagem: Texto da mensagem
+origem: portfolio-contato
+pagina: URL exata de onde o formulário foi enviado
+enviadoEm: Data e hora exata do envio no formato ISO
+
+Requisitos de Implementação
+No HTML (Front-end)
+O formulário deve obrigatoriamente possuir os seguintes identificadores para que o script funcione:
+
+Classe form-contato na tag form.
+
+Atributo data-webhook-url na tag form contendo a URL gerada pelo n8n.
+
+Inputs com os atributos name="nome", name="email" e name="mensagem".
+
+Um elemento com a classe form-status para exibição de alertas de sucesso ou erro.
+
+No n8n (Back-end / Automação)
+Gatilho: Iniciar o fluxo com um nó do tipo Webhook.
+Configuração: Definir o método como POST e o tipo de autenticação desejado.
+Produção: Ativar o fluxo (Workflow) no n8n para que a URL de produção responda permanentemente às requisições do site.
+
+Tratamento de Erros e Logs
+Sucesso: O formulário é limpo e o elemento form-status exibe uma mensagem de agradecimento.
+Falha/Instabilidade: Caso o n8n fique fora do ar ou o usuário perca a conexão, o script captura o erro, mantém os dados digitados para que o usuário não os perca e exibe uma mensagem orientando o contato via e-mail alternativo.
