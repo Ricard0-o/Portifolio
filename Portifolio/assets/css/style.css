@@ -12,6 +12,10 @@
 }
 
 body {
+  /* estilização da barra de rolagem para o site */
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor-neon) var(--cor-bg);
+    
   background: var(--cor-bg);
   color: var(--cor-texto);
   font-family: var(--font-main);
